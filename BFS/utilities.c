@@ -65,24 +65,3 @@ void printList(Node* head){
     }
 
 }
-
-int main(){
-    Node** adjList = malloc(sizeof(Node)*4);
-    addToList(&adjList[1], 2);
-    addToList(&adjList[2], 1);
-    addToList(&adjList[2], 3);
-    addToList(&adjList[3], 2);
-    addToList(&adjList[3], 4);
-    addToList(&adjList[4], 3);
-
-
-    printf("Adiacenti a 1: \n");
-    printList(adjList[1]);
-    printf("Adiacenti a 2: \n");
-    printList(adjList[2]);
-    printf("Adiacenti a 3: \n");
-    printList(adjList[3]);
-    printf("Adiacenti a 4: \n");
-    printList(adjList[4]);
-    
-}
