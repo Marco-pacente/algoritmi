@@ -13,38 +13,51 @@ typedef struct node{
     struct node* next;
 } Node;
 
-void* initList();
 
 void addToList(Node** head, int i);
 
 
-void enQueue(int i, Node* head);
+void enQueue(int i, Node** head);
 
-int deQueue(Node* head);
+int deQueue(Node** head);
 
 
-void enQueue(int i, Node* head){
-    while (head != NULL)
+void enQueue(int n, Node** head){
+    Node* new = malloc(sizeof(Node));
+    new->i = n;
+    new->next = NULL;
+    if (*head == NULL)
     {
-        head = head->next;
+        *head = new;
+        return;
     }
-    head->i = i;   
+
+    Node* curr = *head;
+
+    while(curr->next != NULL){
+        curr = curr->next;
+    }
+    curr->next = new;    
 }
 
-int deQueue(Node* head){
-    Node* p;
-    int i;
-    i = head->i;
-    p = head;
-    head = head->next;
-    free(p);
-    p = NULL;
-    return i;
+int deQueue(Node** head){
+    if (*head == NULL)
+    {
+        return -1;
+    }
+    
+    Node* newHead = *head;
+    
+    newHead = newHead->next;
+    free(*head);
+    *head = newHead;
+    return newHead->i;
 }
 
 void addToList(Node** head, int n){
     Node* new = malloc(sizeof(Node));
     new->i = n;
+    new->next = NULL;
     if (*head == NULL)
     {
         *head = new;
@@ -63,5 +76,5 @@ void printList(Node* head){
         printf("Elemento: %d\n", head->i);
         head = head->next;
     }
-
+    
 }

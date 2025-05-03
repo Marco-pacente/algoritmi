@@ -10,14 +10,13 @@ typedef struct node{
     struct node* next;
 } Node;
 
-void* initList();
 
 void addToList(Node** head, int i);
 
 
-void enQueue(int i, Node* head);
+void enQueue(int i, Node** head);
 
-int deQueue(Node* head);
+int deQueue(Node** head);
 
 
 void printList(Node* head);
